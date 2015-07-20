@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/user/isingh/home/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-508f03c95eadc6abc4e7fae7216911d45884f878.jar" />
+    </item>
+    <item
+        jar="/home/isingh/es-development/ManagingAlarms/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/classes-7503f0550cc795366d946d72c5c2ee563afb62c6.jar" />
+    </item>
+    <item
+        jar="/home/isingh/es-development/ManagingAlarms/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-2cba47ca9e8f619878f162be56d3a0f40e0cac03.jar" />
+    </item>
+    <item
+        jar="/home/isingh/es-development/ManagingAlarms/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/classes-c2558602aa90d1a9da2d0f35a6647d410ebfe5c3.jar" />
+    </item>
+
+</items>

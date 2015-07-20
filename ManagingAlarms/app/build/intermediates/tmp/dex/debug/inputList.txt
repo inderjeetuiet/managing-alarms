@@ -1,0 +1,5 @@
+/home/isingh/es-development/ManagingAlarms/app/build/intermediates/classes/debug
+/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-508f03c95eadc6abc4e7fae7216911d45884f878.jar
+/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-2cba47ca9e8f619878f162be56d3a0f40e0cac03.jar
+/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/classes-7503f0550cc795366d946d72c5c2ee563afb62c6.jar
+/home/isingh/es-development/ManagingAlarms/app/build/intermediates/pre-dexed/debug/classes-c2558602aa90d1a9da2d0f35a6647d410ebfe5c3.jar
