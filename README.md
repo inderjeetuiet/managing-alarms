@@ -1,1 +1,12 @@
 # managing-alarms
+This project demonstrates the concept of using alarm to keep the services running in background all the time. In addition, the same services can be used in foreground with minor tweaking. 
+In this demo project, I have defined two modes which I called them Device and Server. 
+In both the modes, I have created 3 timertask classes that get triggered repeatedly.
+
+Device Mode:
+These 3 timertask classes get triggered with interval of 5 seconds.
+Possible usage: developer can use these timertask classes to get the location of user and updating UI, get bluetooth devices etc.
+
+Server Mode:
+I use the same 3 timertask classes but with the interval of 10 mins
+Possible usage: For example, developer can use them to send data to server, performaing sync with server etc.
