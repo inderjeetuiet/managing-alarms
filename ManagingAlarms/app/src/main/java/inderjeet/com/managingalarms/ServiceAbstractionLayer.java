@@ -17,6 +17,7 @@ public abstract class ServiceAbstractionLayer extends TimerTask {
         this.service = service;
         this.target = target;
     }
+
     MainService service;
     MainService.Target target;
     IntentFilter filterRefreshUpdate;

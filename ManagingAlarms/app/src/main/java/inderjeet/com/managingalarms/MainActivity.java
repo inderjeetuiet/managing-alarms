@@ -26,6 +26,11 @@ public class MainActivity extends ActionBarActivity {
         super.onResume();
         Log.d(TAG, "onResume()");
     }
+
+    /**
+     * To start the Device mode when application starts
+     */
+
     @Override
     protected void onStart() {
         Intent intent = new Intent(MainActivity.this, MainService.class);
@@ -35,9 +40,15 @@ public class MainActivity extends ActionBarActivity {
         Log.d(TAG, "onStart()");
     }
 
+    /**
+     * To switch the mode from device to server, when app goes background
+     */
+
     @Override
     protected void onStop() {
-        changeServiceMode();
+        Intent intent = new Intent(MainActivity.this, MainService.class);
+        intent.putExtra("DeviceMode", "disable");
+        startService(intent);
         super.onStop();
         Log.i(TAG, "onStop");
     }
@@ -48,9 +59,4 @@ public class MainActivity extends ActionBarActivity {
         Log.i(TAG, "onDestroy");
     }
 
-    private void changeServiceMode(){
-        Intent intent = new Intent(MainActivity.this, MainService.class);
-        intent.putExtra("DeviceMode", "disable");
-        startService(intent);
-    }
 }

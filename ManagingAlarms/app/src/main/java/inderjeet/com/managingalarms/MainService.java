@@ -14,7 +14,9 @@ import java.util.Timer;
 /**
  * Created by isingh on 7/20/15.
  */
+
 public class MainService extends Service {
+
     Timer timer;
     Target target = null;
     private int DELAY_TIMER_TIME = 0;
@@ -22,7 +24,8 @@ public class MainService extends Service {
     private int resetAlarmTimer = 600000;
     private static final String TAG = "MainService";
 
-    @Override public void onCreate()
+    @Override
+    public void onCreate()
     {
         super.onCreate();
     }
@@ -32,41 +35,49 @@ public class MainService extends Service {
         public void handleMessage(Message msg)
         {
             timer = new Timer();
-
             if (target == null) {
                 target = Target.SERVER;
             }
             timer.scheduleAtFixedRate(new ServiceTimerA(MainService.this, target), DELAY_TIMER_TIME, TIMER_START_TIME);
-
+            timer.scheduleAtFixedRate(new ServiceTimerB(MainService.this, target), DELAY_TIMER_TIME, TIMER_START_TIME);
+            timer.scheduleAtFixedRate(new ServiceTimerC(MainService.this, target), DELAY_TIMER_TIME, TIMER_START_TIME);
         }
     };
 
-    @Override public int onStartCommand(Intent intent, int flags, int startId)
-    {
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId){
         super.onStartCommand(intent, flags,startId);
         setTimerInfo(intent.getStringExtra("DeviceMode"));
         return START_STICKY;
     }
-
-    @Override public IBinder onBind(Intent intent)
+    @Override
+    public IBinder onBind(Intent intent)
     {
         return null;
     }
 
-    @Override public boolean onUnbind(Intent intent)
+    @Override
+    public boolean onUnbind(Intent intent)
     {
         return super.onUnbind(intent);
     }
 
-    @Override public void onRebind(Intent intent)
+    @Override
+    public void onRebind(Intent intent)
     {
         super.onRebind(intent);
     }
 
-    @Override public void onDestroy()
+    @Override
+    public void onDestroy()
     {
         super.onDestroy();
     }
+
+    /**
+     * method handles the switch between mode from Device to Server or vice versa
+     * @param check : String variable to swith mode, enable = Device mode & disable = Server mode
+     */
 
     private void setTimerInfo(String check)
     {
@@ -94,6 +105,11 @@ public class MainService extends Service {
             }
         }
     }
+
+    /**
+     * Method to start the alarm manager to run the timertasks in background
+     */
+
     private void esServiceRunningBackground()
     {
         final Intent restartIntent = new Intent(this, MainService.class);
@@ -109,6 +125,11 @@ public class MainService extends Service {
         };
         restartServiceHandler.sendEmptyMessageDelayed(0, 0);
     }
+
+    /**
+     * It reset the timertask to null, that allows switching of mode easily
+     */
+
     private void timerReset(){
         if(null != timer)
         {
@@ -117,6 +138,11 @@ public class MainService extends Service {
             timer = null;
         }
     }
+
+    /**
+     * Enum to know which mode is enable at the time, in the application DEVICE or SERVER
+     */
+
     public enum Target
     {
         SERVER,
