@@ -47,7 +47,8 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         super.onStartCommand(intent, flags,startId);
-        setTimerInfo(intent.getStringExtra("DeviceMode"));
+        if(intent != null)
+            setTimerInfo(intent.getStringExtra("DeviceMode"));
         return START_STICKY;
     }
     @Override
@@ -83,26 +84,24 @@ public class MainService extends Service {
     {
         if(check != null)
         {
+            timerReset();
             if (check.equals("enable"))
             {
                 target = Target.DEVICE;
                 DELAY_TIMER_TIME = 0;
                 TIMER_START_TIME = 5000;
-                timerReset();
-                Message msgObj = serviceHandler.obtainMessage();
-                serviceHandler.sendMessage(msgObj);
+
             }
             if (check.equals("disable"))
             {
                 target = Target.SERVER;
                 DELAY_TIMER_TIME = 0;
                 TIMER_START_TIME = 600000;
-                timerReset();
                 serviceHandler.removeMessages(0);
-                Message msgObj = serviceHandler.obtainMessage();
-                serviceHandler.sendMessage(msgObj);
-                esServiceRunningBackground();
             }
+            Message msgObj = serviceHandler.obtainMessage();
+            serviceHandler.sendMessage(msgObj);
+            esServiceRunningBackground();
         }
     }
 
