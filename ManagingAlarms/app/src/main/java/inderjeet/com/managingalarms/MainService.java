@@ -30,6 +30,10 @@ public class MainService extends Service {
         super.onCreate();
     }
 
+    /*
+    handler to start the timerTasks
+     */
+
     public final Handler serviceHandler = new Handler()
     {
         public void handleMessage(Message msg)
@@ -101,7 +105,7 @@ public class MainService extends Service {
             }
             Message msgObj = serviceHandler.obtainMessage();
             serviceHandler.sendMessage(msgObj);
-            esServiceRunningBackground();
+            runServiceInBackground();
         }
     }
 
@@ -109,7 +113,7 @@ public class MainService extends Service {
      * Method to start the alarm manager to run the timertasks in background
      */
 
-    private void esServiceRunningBackground()
+    private void runServiceInBackground()
     {
         final Intent restartIntent = new Intent(this, MainService.class);
         restartIntent.putExtra("ALARM_RESTART_SERVICE_DIED", true);
