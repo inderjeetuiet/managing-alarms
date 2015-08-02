@@ -21,7 +21,6 @@ public class MainService extends Service {
     Target target = null;
     private int DELAY_TIMER_TIME = 0;
     private int TIMER_START_TIME = 600000;
-    private int resetAlarmTimer = 600000;
     private static final String TAG = "MainService";
 
     @Override
@@ -122,8 +121,8 @@ public class MainService extends Service {
             @Override
             public void handleMessage(Message msg) {
                 PendingIntent pintent = PendingIntent.getService(getApplicationContext(), 0, restartIntent, 0);
-                alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), resetAlarmTimer, pintent);
-                sendEmptyMessageDelayed(0, resetAlarmTimer);
+                alarmMgr.setExact(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),pintent);
+                sendEmptyMessageDelayed(0, TIMER_START_TIME);
             }
         };
         restartServiceHandler.sendEmptyMessageDelayed(0, 0);
