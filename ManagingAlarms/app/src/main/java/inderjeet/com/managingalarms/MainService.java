@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.ResultReceiver;
 import android.util.Log;
 import java.util.Timer;
 
@@ -50,8 +51,13 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         super.onStartCommand(intent, flags,startId);
-        if(intent != null)
+
+        if(intent != null) {
+            ResultReceiver ss = intent.getParcelableExtra("receiver");
+            if(ss != null)
+                MainApplication.setReciever(ss);
             setTimerInfo(intent.getStringExtra("DeviceMode"));
+        }
         return START_STICKY;
     }
     @Override
@@ -90,6 +96,7 @@ public class MainService extends Service {
             timerReset();
             if (check.equals("enable"))
             {
+                timerReset();
                 target = Target.DEVICE;
                 DELAY_TIMER_TIME = 0;
                 TIMER_START_TIME = 5000;
@@ -97,6 +104,7 @@ public class MainService extends Service {
             }
             if (check.equals("disable"))
             {
+                timerReset();
                 target = Target.SERVER;
                 DELAY_TIMER_TIME = 0;
                 TIMER_START_TIME = 600000;
