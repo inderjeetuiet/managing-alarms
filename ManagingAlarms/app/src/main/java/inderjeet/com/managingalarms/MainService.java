@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.ResultReceiver;
-import android.util.Log;
+
 import java.util.Timer;
 
 /**
@@ -22,6 +22,8 @@ public class MainService extends Service {
     Target target = null;
     private int DELAY_TIMER_TIME = 0;
     private int TIMER_START_TIME = 600000;
+    static AlarmManager alarmMgr;
+    PendingIntent pintent;
     private static final String TAG = "MainService";
 
     @Override
@@ -42,7 +44,7 @@ public class MainService extends Service {
             if (target == null) {
                 target = Target.SERVER;
             }
-            timer.scheduleAtFixedRate(new ServiceTimerA(MainService.this, target), DELAY_TIMER_TIME, TIMER_START_TIME);
+            timer.scheduleAtFixedRate(new ServiceWiFi(MainService.this, target), DELAY_TIMER_TIME, TIMER_START_TIME);
             timer.scheduleAtFixedRate(new ServiceTimerB(MainService.this, target), DELAY_TIMER_TIME, TIMER_START_TIME);
             timer.scheduleAtFixedRate(new ServiceTimerC(MainService.this, target), DELAY_TIMER_TIME, TIMER_START_TIME);
         }
@@ -93,26 +95,27 @@ public class MainService extends Service {
     {
         if(check != null)
         {
-            timerReset();
+
             if (check.equals("enable"))
             {
-                timerReset();
                 target = Target.DEVICE;
                 DELAY_TIMER_TIME = 0;
                 TIMER_START_TIME = 5000;
-
             }
             if (check.equals("disable"))
             {
-                timerReset();
                 target = Target.SERVER;
                 DELAY_TIMER_TIME = 0;
                 TIMER_START_TIME = 600000;
-                serviceHandler.removeMessages(0);
             }
-            Message msgObj = serviceHandler.obtainMessage();
-            serviceHandler.sendMessage(msgObj);
-            runServiceInBackground();
+            timerReset();
+            if(target.equals(Target.DEVICE)) {
+                Message msgObj = serviceHandler.obtainMessage();
+                serviceHandler.sendMessage(msgObj);
+            } else {
+                if(alarmMgr == null)
+                    runServiceInBackground();
+            }
         }
     }
 
@@ -124,7 +127,7 @@ public class MainService extends Service {
     {
         final Intent restartIntent = new Intent(this, MainService.class);
         restartIntent.putExtra("ALARM_RESTART_SERVICE_DIED", true);
-        final AlarmManager alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Handler restartServiceHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
