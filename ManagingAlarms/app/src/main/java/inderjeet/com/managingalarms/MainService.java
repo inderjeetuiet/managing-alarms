@@ -95,7 +95,6 @@ public class MainService extends Service {
     {
         if(check != null)
         {
-
             if (check.equals("enable"))
             {
                 target = Target.DEVICE;
@@ -110,11 +109,11 @@ public class MainService extends Service {
             }
             timerReset();
             if(target.equals(Target.DEVICE)) {
+                alarmMgr.cancel(pintent);
                 Message msgObj = serviceHandler.obtainMessage();
                 serviceHandler.sendMessage(msgObj);
             } else {
-                if(alarmMgr == null)
-                    runServiceInBackground();
+                runServiceInBackground();
             }
         }
     }
@@ -132,7 +131,7 @@ public class MainService extends Service {
             @Override
             public void handleMessage(Message msg) {
                 PendingIntent pintent = PendingIntent.getService(getApplicationContext(), 0, restartIntent, 0);
-                alarmMgr.setExact(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),pintent);
+                alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), TIMER_START_TIME, pintent);
                 sendEmptyMessageDelayed(0, TIMER_START_TIME);
             }
         };

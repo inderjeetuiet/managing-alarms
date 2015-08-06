@@ -3,21 +3,12 @@ package inderjeet.com.managingalarms;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import inderjeet.com.managingalarms.properties.*;
 
 /**
  * Created by isingh on 7/20/15.
@@ -54,7 +45,7 @@ public class ServiceWiFi extends ServiceAbstractionLayer {
                 if (results != null) {
                     for (ScanResult result : results) {
                         if (result.level != 0)
-                            wifi.add(result.SSID);
+                            wifi.add(new wifiProperty(result.level, result.SSID, result.BSSID, result.frequency, result.capabilities));
                     }
                 }
             } catch (Exception excpetion) {
@@ -71,7 +62,7 @@ public class ServiceWiFi extends ServiceAbstractionLayer {
     }
 
     // ///////////////////////////////////////////////////////////////
-    ArrayList<String> wifi;
+    ArrayList<wifiProperty> wifi;
     private WifiManager manager;
     private WifiReceiver receiver;
 }
