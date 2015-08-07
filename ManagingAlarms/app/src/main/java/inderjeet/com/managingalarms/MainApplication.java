@@ -7,7 +7,8 @@ import android.os.ResultReceiver;
 /**
  * Created by isingh on 8/3/15.
  */
-public class MainApplication extends Application {
+public class MainApplication extends Application
+{
     private static Context instance;
     private static ResultReceiver resultReceiver;
 

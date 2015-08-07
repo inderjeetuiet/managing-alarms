@@ -13,7 +13,8 @@ import inderjeet.com.managingalarms.properties.*;
 /**
  * Created by isingh on 7/20/15.
  */
-public class ServiceWiFi extends ServiceAbstractionLayer {
+public class ServiceWiFi extends ServiceAbstractionLayer
+{
 
     private static String TAG = "ServiceTimerA";
 
@@ -38,19 +39,23 @@ public class ServiceWiFi extends ServiceAbstractionLayer {
     }
     class WifiReceiver extends BroadcastReceiver
     {
-        public void onReceive(Context c, Intent intent) {
+        public void onReceive(Context c, Intent intent)
+        {
             wifi = new ArrayList<>();
             List<ScanResult> results = manager.getScanResults();
             try {
                 if (results != null) {
-                    for (ScanResult result : results) {
+                    for (ScanResult result : results)
+                    {
                         if (result.level != 0)
                             wifi.add(new wifiProperty(result.level, result.SSID, result.BSSID, result.frequency, result.capabilities));
                     }
                 }
-            } catch (Exception excpetion) {
+            } catch (Exception excpetion)
+            {
                 excpetion.printStackTrace();
-            } finally {
+            } finally
+            {
                 if(target.equals(ServiceAbstractionLayer.target.DEVICE)){
                     //ToDo
                 }

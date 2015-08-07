@@ -5,7 +5,8 @@ import android.util.Log;
 /**
  * Created by isingh on 7/20/15.
  */
-public class ServiceTimerC extends ServiceAbstractionLayer {
+public class ServiceTimerC extends ServiceAbstractionLayer
+{
     private static String TAG = "ServiceTimerC";
 
     public ServiceTimerC(MainService service, MainService.Target target)

@@ -16,7 +16,8 @@ import java.util.Timer;
  * Created by isingh on 7/20/15.
  */
 
-public class MainService extends Service {
+public class MainService extends Service
+{
 
     Timer timer;
     Target target = null;
@@ -51,10 +52,12 @@ public class MainService extends Service {
     };
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId){
+    public int onStartCommand(Intent intent, int flags, int startId)
+    {
         super.onStartCommand(intent, flags,startId);
 
-        if(intent != null) {
+        if(intent != null)
+        {
             ResultReceiver ss = intent.getParcelableExtra("receiver");
             if(ss != null)
                 MainApplication.setReciever(ss);
@@ -127,7 +130,8 @@ public class MainService extends Service {
         final Intent restartIntent = new Intent(this, MainService.class);
         restartIntent.putExtra("ALARM_RESTART_SERVICE_DIED", true);
         alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Handler restartServiceHandler = new Handler() {
+        Handler restartServiceHandler = new Handler()
+        {
             @Override
             public void handleMessage(Message msg) {
                 PendingIntent pintent = PendingIntent.getService(getApplicationContext(), 0, restartIntent, 0);
@@ -142,7 +146,8 @@ public class MainService extends Service {
      * It reset the timertask to null, that allows switching of mode easily
      */
 
-    private void timerReset(){
+    private void timerReset()
+    {
         if(null != timer)
         {
             timer.cancel();

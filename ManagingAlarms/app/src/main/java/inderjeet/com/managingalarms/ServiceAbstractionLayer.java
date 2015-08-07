@@ -10,7 +10,8 @@ import java.util.TimerTask;
 /**
  * Created by isingh on 7/20/15.
  */
-public abstract class ServiceAbstractionLayer extends TimerTask {
+public abstract class ServiceAbstractionLayer extends TimerTask
+{
 
     public ServiceAbstractionLayer(MainService service, MainService.Target target)
     {
