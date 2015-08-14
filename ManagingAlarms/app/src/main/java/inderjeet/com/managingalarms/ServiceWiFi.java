@@ -57,7 +57,7 @@ public class ServiceWiFi extends ServiceAbstractionLayer
             } finally
             {
                 if(target.equals(ServiceAbstractionLayer.target.DEVICE)){
-                    //ToDo
+
                 }
                 service.unregisterReceiver(receiver);
                 results.clear();

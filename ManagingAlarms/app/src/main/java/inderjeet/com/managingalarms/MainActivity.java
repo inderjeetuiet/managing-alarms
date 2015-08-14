@@ -2,19 +2,27 @@ package inderjeet.com.managingalarms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+
+import java.util.ArrayList;
+import inderjeet.com.managingalarms.properties.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MainActivity extends ActionBarActivity
 {
 
     private static String TAG = "MainActivity";
+    dataReciever dataReciever = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dataReciever = new dataReciever(null);
     }
 
     @Override
@@ -40,6 +48,7 @@ public class MainActivity extends ActionBarActivity
     {
         Intent intent = new Intent(MainActivity.this, MainService.class);
         intent.putExtra("DeviceMode", "enable");
+        intent.putExtra("receiver", dataReciever);
         startService(intent);
         super.onStart();
         Log.d(TAG, "onStart()");
@@ -64,6 +73,23 @@ public class MainActivity extends ActionBarActivity
     {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
+    }
+
+    class dataReciever extends ResultReceiver {
+        public dataReciever(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+
+            if(resultCode == 100){
+                ArrayList<wifiProperty> wifi = (ArrayList<wifiProperty>)resultData.getSerializable("data");
+            }
+            else{
+                Log.d(TAG, "else executed");
+            }
+        }
     }
 
 }
