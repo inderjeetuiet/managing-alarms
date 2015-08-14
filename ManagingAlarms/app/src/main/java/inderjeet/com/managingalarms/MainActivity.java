@@ -75,6 +75,10 @@ public class MainActivity extends ActionBarActivity
         Log.i(TAG, "onDestroy");
     }
 
+    /**
+     * result reciever to establish connection from timertask services
+     */
+
     class dataReciever extends ResultReceiver {
         public dataReciever(Handler handler) {
             super(handler);

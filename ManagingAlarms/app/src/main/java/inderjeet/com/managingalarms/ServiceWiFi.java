@@ -37,6 +37,11 @@ public class ServiceWiFi extends ServiceAbstractionLayer
             }
         }
     }
+
+    /**
+     * Broadcast reciever to collet wifi signals
+     */
+
     class WifiReceiver extends BroadcastReceiver
     {
         public void onReceive(Context c, Intent intent)
@@ -57,7 +62,9 @@ public class ServiceWiFi extends ServiceAbstractionLayer
             } finally
             {
                 if(target.equals(ServiceAbstractionLayer.target.DEVICE)){
-
+                    if (dm == null)
+                        dm = inderjeet.com.managingalarms.dataModel.getInstance();
+                    dm.putData(wifi);
                 }
                 service.unregisterReceiver(receiver);
                 results.clear();
@@ -70,4 +77,5 @@ public class ServiceWiFi extends ServiceAbstractionLayer
     ArrayList<wifiProperty> wifi;
     private WifiManager manager;
     private WifiReceiver receiver;
+    private dataModel dm;
 }

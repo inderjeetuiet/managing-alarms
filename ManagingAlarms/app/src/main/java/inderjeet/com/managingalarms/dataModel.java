@@ -26,6 +26,10 @@ public class dataModel
         return instance;
     }
 
+    /**
+     * Method to get data from services in all mode
+     * @param data : data sent by services such as for wifi, gps etc
+     */
     public void putData(ArrayList<wifiProperty> data){
         resultReceiver = MainApplication.getResultReceiver();
         if (resultReceiver != null) {
