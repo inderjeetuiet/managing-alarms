@@ -12,3 +12,8 @@ First TimerTask: Handles the scaning all the wifi signals that can be captured b
 Server Mode:
 I use the same 3 timertask classes, but with the interval of 10 mins
 Possible usage: For example, developer can use them to send data to server, performaing sync with server etc.
+
+In addition, the timertask collects data periodically as per the mode selected, currently only data collection for wifi has been implemented. The collected data passed to activity with the use of ResultReciever. 
+
+Comming soon:
+Periodic data collection of sensor data such GPS coordinates, speed etc 
