@@ -9,7 +9,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import inderjeet.com.managingalarms.properties.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MainActivity extends ActionBarActivity
 {

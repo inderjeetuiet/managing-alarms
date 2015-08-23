@@ -53,7 +53,7 @@ public class ServiceWiFi extends ServiceAbstractionLayer
                     for (ScanResult result : results)
                     {
                         if (result.level != 0)
-                            wifi.add(new wifiProperty(result.level, result.SSID, result.BSSID, result.frequency, result.capabilities));
+                            wifi.add(wifiProperty.updateAllWifiData(result.level, result.SSID, result.BSSID, result.frequency, result.capabilities));
                     }
                 }
             } catch (Exception excpetion)
