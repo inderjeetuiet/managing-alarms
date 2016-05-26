@@ -1,11 +1,12 @@
 # managing-alarms
 This project demonstrates the concept of using alarm to keep the services running in background all the time. In addition, the same services can be used in foreground with minor tweaking. 
-In this demo project, I have defined two modes which I called them Device and Server. 
-In both the modes, I have created 3 timertask classes that get triggered repeatedly.
+
+In this demo project, I have defined two modes, I called them Device and Server Mode. 
+In both the modes, I have created 3 timertask classes that get triggered depending on Acticity life cycle.
 
 Device Mode:
 These 3 timertask classes get triggered with interval of 5 seconds.
-Possible usage: developer can use these timertask classes to get the location of user and updating UI, get bluetooth devices etc.
+Possible usage: developer can use these timertask classes to get the location of user, updating UI, get bluetooth devices etc.
 
 First TimerTask: Handles the scaning all the wifi signals that can be captured by device, and updates in listview in every 5 seconds. (Still not complete yet)
 
